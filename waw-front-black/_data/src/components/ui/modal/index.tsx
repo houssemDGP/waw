@@ -1,0 +1,81 @@
+import { useRef, useEffect } from "react";
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  className?: string;
+  children: React.ReactNode;
+  showCloseButton?: boolean;
+  isFullscreen?: boolean;
+}
+
+export const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  children,
+  className = "",
+  showCloseButton = true,
+  isFullscreen = false,
+}) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  // Bloquer scroll et gestures derrière
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+  // Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    if (isOpen) document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const contentClasses = isFullscreen
+    ? "w-full h-full"
+    : "relative w-full max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-3xl bg-white dark:bg-gray-900";
+
+  return (
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center">
+      {/* BACKDROP */}
+      <div
+        className="absolute inset-0 z-[100] bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      ></div>
+
+      {/* MODAL CONTENT */}
+      <div
+        ref={modalRef}
+        className={`${contentClasses} ${className}`}
+        style={{
+          maxHeight: "90vh",
+          overflowY: "auto",
+          WebkitOverflowScrolling: "touch",
+          position: "relative",
+          zIndex: 200,
+        }}
+        onClick={(e) => e.stopPropagation()} // empêche fermeture clic interne
+      >
+        {/* CLOSE BUTTON */}
+        {showCloseButton && (
+          <button
+            onClick={onClose}
+            className="absolute right-3 top-3 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            ✕
+          </button>
+        )}
+        <div className="p-0 sm:p-4">{children}</div>
+      </div>
+    </div>
+  );
+};
