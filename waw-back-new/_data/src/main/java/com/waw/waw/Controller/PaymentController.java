@@ -111,7 +111,7 @@ public class PaymentController {
 
             // URL de retour
             String returnUrl = request.getReturnUrl() != null ? request.getReturnUrl()
-                    : frontendUrl + "/api/api/payment/clictopay/callback";
+                    : frontendUrl + "/api/payment/clictopay/callback";
             params.add("returnUrl", returnUrl);
             String failUrl = frontendUrl + "/payment/failed";
 

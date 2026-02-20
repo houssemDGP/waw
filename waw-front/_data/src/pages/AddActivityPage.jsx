@@ -454,7 +454,7 @@ useEffect(() => {
 }, []);
 
   const [Listactivites, setListactivites] = useState([]);
-  const BASE_URL = "https://waw.com.tn/api";
+  const BASE_URL = "https://waw.com.tn";
 
   // fetch activites
   const fetchActivities = async () => {
