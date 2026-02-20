@@ -1738,11 +1738,6 @@ const [events, setEvents] = useState([]);
   const [rue, setRue] = useState("");
 
   const [searchParams, setSearchParams] = useState(new URLSearchParams(window.location.search));
-useEffect(() => {
-
-  console.log(selectedDate);
-  console.log(dayjs(selectedDate).format('DD MMMM YYYY'))
-  }, [selectedDate]); 
  useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -1753,31 +1748,34 @@ useEffect(() => {
         const nom = searchParams.get("nom");
         const country = searchParams.get("country") || "";
         const selectedDatee = searchParams.get("selectedDate") || "";
-        const minPrice = searchParams.get("minPrice") || 0;
-        const maxPrice = searchParams.get("maxPrice") || 2000;
-        if(selectedDatee ==="tomorrow"){var date = new Date();
+        const urlMinPrice = searchParams.get("minPrice");
+        const urlMaxPrice = searchParams.get("maxPrice");
 
-// add a day
-date.setDate(date.getDate() + 1);
+        // Sync price filter from URL params
+        if (urlMinPrice !== null) setMinPrice(Number(urlMinPrice));
+        if (urlMaxPrice !== null) setMaxPrice(Number(urlMaxPrice));
 
-        setSelectedDate(date);
-        console.log(selectedDate);}
+        const minPrice = urlMinPrice || 0;
+        const maxPrice = urlMaxPrice || 3000;
 
+        if (selectedDatee === "tomorrow") {
+          const date = new Date();
+          date.setDate(date.getDate() + 1);
+          setSelectedDate(date);
+        } else if (selectedDatee === "today") {
+          setSelectedDate(new Date());
+        }
 
-        let response;
+        const params = {};
+        if (activite) params.activite = activite;
+        if (categorie) params.categorie = categorie;
+        if (subCategorie) params.subCategorie = subCategorie;
+        if (rue) params.rue = rue;
+        if (nom) params.nom = nom;
+        if (minPrice) params.minPrice = minPrice;
+        if (maxPrice) params.maxPrice = maxPrice;
 
-          const params = {};
-          if (activite) params.activite = activite;
-          if (categorie) params.categorie = categorie;
-          if (subCategorie) params.subCategorie = subCategorie;
-          if (rue) params.rue = rue;
-          if (nom) params.nom = nom;
-          if (minPrice) params.minPrice = minPrice;
-          if (maxPrice) params.maxPrice = maxPrice;
-
-          response = await axios.get("https://waw.com.tn/api/events/search", { params });
-          console.log(params);
-
+        const response = await axios.get("https://waw.com.tn/api/events/search", { params });
         setEvents(response.data);
       } catch (error) {
         console.error("Failed to fetch events:", error);
@@ -1785,7 +1783,7 @@ date.setDate(date.getDate() + 1);
     };
 
     fetchEvents();
-  }, [searchParams]); 
+  }, [searchParams]);
 
 
   useEffect(() => {
@@ -2055,7 +2053,7 @@ const matchesHour = selectedHour
       }}
       onClick={togglePersOpen}
     >
-      {selectedPers ?? "Pers."}
+      {selectedPers > 1 ? `${selectedPers} pers.` : "Personnes"}
     </Button>
 
     <Button
@@ -2078,24 +2076,54 @@ const matchesHour = selectedHour
       {inputValue || "Activite"}
     </Button>
 
-    <Button 
-      variant="outlined"   
+    <Button
+      variant="outlined"
       sx={{
         textTransform: "none",
         fontWeight: 500,
-        borderColor: "#e5e7eb",
+        borderColor: (minPrice > 0 || maxPrice < 3000) ? "#181AD6" : "#e5e7eb",
         borderRadius: "20px",
-        color: "#2a3944",
-
+        color: (minPrice > 0 || maxPrice < 3000) ? "#fff" : "#2a3944",
+        backgroundColor: (minPrice > 0 || maxPrice < 3000) ? "#181AD6" : "transparent",
         "&:hover": {
           backgroundColor: "#181AD610",
           borderColor: "#181AD6"
         }
-      }} 
+      }}
       onClick={togglePrix}
     >
-      Prix
+      {(minPrice > 0 || maxPrice < 3000) ? `${minPrice}-${maxPrice} TND` : "Prix"}
     </Button>
+
+    {/* Bouton reset visible si au moins un filtre actif */}
+    {(selectedHour || selectedPers > 1 || minPrice > 0 || maxPrice < 3000 || inputValue) && (
+      <Button
+        variant="text"
+        size="small"
+        sx={{
+          textTransform: "none",
+          color: "#ef4444",
+          borderRadius: "20px",
+          fontWeight: 500,
+          "&:hover": { backgroundColor: "#fee2e2" }
+        }}
+        onClick={() => {
+          setSelectedHour(null);
+          setSelectedPers(1);
+          setMinPrice(0);
+          setMaxPrice(3000);
+          setInputValue("");
+          const url = new URL(window.location);
+          url.searchParams.delete("activite");
+          url.searchParams.delete("minPrice");
+          url.searchParams.delete("maxPrice");
+          window.history.pushState({}, "", url);
+          setSearchParams(new URLSearchParams(url.search));
+        }}
+      >
+        Effacer filtres ✕
+      </Button>
+    )}
     </Box>
         {/* Popper Date */}
         <Popper
@@ -2462,7 +2490,34 @@ Tous                </MenuItem>
 </Box>
 
   </HeaderBar>
-{showBestOnly ? (
+{filteredEvents.length === 0 ? (
+  <Box sx={{ textAlign: "center", py: 8, color: "#6b7280" }}>
+    <Typography variant="h6" sx={{ mb: 1 }}>Aucune activité disponible</Typography>
+    <Typography variant="body2">
+      Aucune activité ne correspond à vos filtres pour cette date.<br/>
+      Essayez de modifier la date, l'heure ou le nombre de personnes.
+    </Typography>
+    <Button
+      variant="outlined"
+      sx={{ mt: 3, borderRadius: "20px", textTransform: "none", borderColor: "#181AD6", color: "#181AD6" }}
+      onClick={() => {
+        setSelectedHour(null);
+        setSelectedPers(1);
+        setMinPrice(0);
+        setMaxPrice(3000);
+        setInputValue("");
+        const url = new URL(window.location);
+        url.searchParams.delete("activite");
+        url.searchParams.delete("minPrice");
+        url.searchParams.delete("maxPrice");
+        window.history.pushState({}, "", url);
+        setSearchParams(new URLSearchParams(url.search));
+      }}
+    >
+      Réinitialiser les filtres
+    </Button>
+  </Box>
+) : showBestOnly ? (
     <div
     style={{
       cursor: "pointer",
@@ -2470,17 +2525,17 @@ Tous                </MenuItem>
     }}
   >
     <EventCardBest
-      data={filteredEvents[0]} // meilleure offre
+      data={filteredEvents[0]}
       selectedSlot={selectedSlot}
       onSelectSlot={setSelectedSlot}
- onIgnore={() => {
-    setEvents(prev =>
-      prev.filter(r => r.id !== filteredEvents[0].id)
-    );
-  }}
+      onIgnore={() => {
+        setEvents(prev =>
+          prev.filter(r => r.id !== filteredEvents[0].id)
+        );
+      }}
     />
         <div style={{ marginTop: 10, textAlign: "center", color: "#00564a", fontWeight: "bold" }}>
-{filteredEvents.length ?? 0} activités restants
+{filteredEvents.length} activité{filteredEvents.length > 1 ? "s" : ""} disponible{filteredEvents.length > 1 ? "s" : ""}
     </div>
   </div>
 ) : (
@@ -2491,8 +2546,8 @@ filteredEvents.map((rest) => (
       selectedSlot={rest.id === openEventId ? selectedSlot : null}
       onSelectSlot={setSelectedSlot}
       isOpen={openEventId === rest.id}
-      onOpen={() => setOpenEventId(rest.id)}  // << pass this
-      onClose={() => setOpenEventId(null)}    // << pass this
+      onOpen={() => setOpenEventId(rest.id)}
+      onClose={() => setOpenEventId(null)}
       onIgnore={() => setEvents(prev => prev.filter(r => r.id !== rest.id))}
     />
   </div>
