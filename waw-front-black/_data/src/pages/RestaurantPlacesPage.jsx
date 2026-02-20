@@ -65,7 +65,7 @@ export default function RestaurantPlacesPage() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://waw.com.tn/api/api/restaurant-places/restaurant/${restaurantId}`
+        `https://waw.com.tn/api/restaurant-places/restaurant/${restaurantId}`
       );
       setPlaces(response.data);
     } catch (err) {
@@ -131,13 +131,13 @@ export default function RestaurantPlacesPage() {
       let response;
       if (editingPlace) {
         response = await axios.put(
-          `https://waw.com.tn/api/api/restaurant-places/${editingPlace.id}`,
+          `https://waw.com.tn/api/restaurant-places/${editingPlace.id}`,
           placeData
         );
         setPlaces(places.map(p => p.id === editingPlace.id ? response.data : p));
       } else {
         response = await axios.post(
-          `https://waw.com.tn/api/api/restaurant-places`,
+          `https://waw.com.tn/api/restaurant-places`,
           placeData
         );
         setPlaces([...places, response.data]);
@@ -154,7 +154,7 @@ export default function RestaurantPlacesPage() {
   const handleDelete = async (id) => {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer ce lieu ?")) {
       try {
-        await axios.delete(`https://waw.com.tn/api/api/restaurant-places/${id}`);
+        await axios.delete(`https://waw.com.tn/api/restaurant-places/${id}`);
         setPlaces(places.filter(p => p.id !== id));
       } catch (err) {
         console.error("Error deleting place:", err);
@@ -167,7 +167,7 @@ export default function RestaurantPlacesPage() {
   const handleToggleActive = async (id, currentStatus) => {
     try {
       const response = await axios.put(
-        `https://waw.com.tn/api/api/restaurant-places/${id}/toggle-active`
+        `https://waw.com.tn/api/restaurant-places/${id}/toggle-active`
       );
       setPlaces(places.map(p => p.id === id ? response.data : p));
     } catch (err) {

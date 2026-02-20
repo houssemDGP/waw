@@ -42,7 +42,7 @@ const PaymentPagesuccess: React.FC = () => {
 
 
 const downloadVoucher = async () => {
-const response = await fetch(`https://waw.com.tn/api/api/reservations/voucher2/${paymentData.orderNumber}/${paymentData.orderId}`, {
+const response = await fetch(`https://waw.com.tn/api/reservations/voucher2/${paymentData.orderNumber}/${paymentData.orderId}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ export default function UserProfiles() {
         }
 
         const response = await axios.get(
-          `https://waw.com.tn/api/api/admins/${adminId}`
+          `https://waw.com.tn/api/admins/${adminId}`
         );
         setAdmin(response.data);
       } catch (error) {

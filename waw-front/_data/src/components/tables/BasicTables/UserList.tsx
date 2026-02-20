@@ -23,7 +23,7 @@ export default function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("https://waw.com.tn/api/api/users");
+      const res = await axios.get("https://waw.com.tn/api/users");
       const mapped = res.data.map((u: any) => ({
         id: u.id,
         nom: u.nom,
@@ -57,7 +57,7 @@ const filteredUsers = users.filter((user) => {
   const toggleStatus = async (user: User) => {
     if (!window.confirm(`Confirmer ${user.status === "ACTIVE" ? "blocage" : "déblocage"} de ${user.nom}?`)) return;
     try {
-      await axios.patch(`https://waw.com.tn/api/api/users/${user.id}/toggle-active`);
+      await axios.patch(`https://waw.com.tn/api/users/${user.id}/toggle-active`);
       fetchUsers();
     } catch (error) {
       console.error("Erreur changement statut", error);
@@ -85,7 +85,7 @@ const filteredUsers = users.filter((user) => {
     // Ajouter d'autres champs si nécessaire
 
     try {
-      await axios.put(`https://waw.com.tn/api/api/users/update/${selectedUser.id}`, formData, {
+      await axios.put(`https://waw.com.tn/api/users/update/${selectedUser.id}`, formData, {
         headers: { "Content-Type": "application/json" },
       });
       fetchUsers();

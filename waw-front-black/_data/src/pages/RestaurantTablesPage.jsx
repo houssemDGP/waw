@@ -124,7 +124,7 @@ export default function RestaurantTablesPage() {
     try {
       for (const table of bulkTables) {
         await axios.post(
-          "https://waw.com.tn/api/api/restaurant-tables",
+          "https://waw.com.tn/api/restaurant-tables",
           {
             ...table,
             place: { id: table.placeId },
@@ -152,14 +152,14 @@ export default function RestaurantTablesPage() {
       // Fetch tables
       let tablesUrl;
       if (placeId) {
-        tablesUrl = `https://waw.com.tn/api/api/restaurant-tables/place/${placeId}`;
+        tablesUrl = `https://waw.com.tn/api/restaurant-tables/place/${placeId}`;
       } else {
-        tablesUrl = `https://waw.com.tn/api/api/restaurant-tables/restaurant/${restaurantId}`;
+        tablesUrl = `https://waw.com.tn/api/restaurant-tables/restaurant/${restaurantId}`;
       }
 
       const [tablesRes, placesRes] = await Promise.all([
         axios.get(tablesUrl),
-        axios.get(`https://waw.com.tn/api/api/restaurant-places/restaurant/${restaurantId}`)
+        axios.get(`https://waw.com.tn/api/restaurant-places/restaurant/${restaurantId}`)
       ]);
 
       setTables(tablesRes.data);
@@ -256,13 +256,13 @@ export default function RestaurantTablesPage() {
       let response;
       if (editingTable) {
         response = await axios.put(
-          `https://waw.com.tn/api/api/restaurant-tables/${editingTable.id}`,
+          `https://waw.com.tn/api/restaurant-tables/${editingTable.id}`,
           tableData
         );
         setTables(tables.map(t => t.id === editingTable.id ? response.data : t));
       } else {
         response = await axios.post(
-          `https://waw.com.tn/api/api/restaurant-tables`,
+          `https://waw.com.tn/api/restaurant-tables`,
           tableData
         );
         setTables([...tables, response.data]);
@@ -279,7 +279,7 @@ export default function RestaurantTablesPage() {
   const handleDelete = async (id) => {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cette table ?")) {
       try {
-        await axios.delete(`https://waw.com.tn/api/api/restaurant-tables/${id}`);
+        await axios.delete(`https://waw.com.tn/api/restaurant-tables/${id}`);
         setTables(tables.filter(t => t.id !== id));
       } catch (err) {
         console.error("Error deleting table:", err);
@@ -292,7 +292,7 @@ export default function RestaurantTablesPage() {
   const handleToggleActive = async (id, currentStatus) => {
     try {
       const response = await axios.put(
-        `https://waw.com.tn/api/api/restaurant-tables/${id}/toggle-active`
+        `https://waw.com.tn/api/restaurant-tables/${id}/toggle-active`
       );
       setTables(tables.map(t => t.id === id ? response.data : t));
     } catch (err) {

@@ -331,7 +331,7 @@ const RestaurantCardComponent = ({ restaurant, onClick }) => {
 
     try {
       // API à adapter pour les restaurants
-      const res = await fetch(`https://waw.com.tn/api/api/wishlist/add-restaurant?userId=${userId}&restaurantId=${restaurant.id}`, {
+      const res = await fetch(`https://waw.com.tn/api/wishlist/add-restaurant?userId=${userId}&restaurantId=${restaurant.id}`, {
         method: 'POST'
       });
 
@@ -565,7 +565,7 @@ export default function RestaurantsPage() {
   const fetchRestaurants = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://waw.com.tn/api/api/restaurants');
+      const response = await fetch('https://waw.com.tn/api/restaurants');
       if (!response.ok) throw new Error('Erreur de chargement');
       const data = await response.json();
       

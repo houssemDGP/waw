@@ -596,11 +596,7 @@ public ResponseEntity<List<Event>> getFilteredEvents(
 
             if (eventMatches) filteredEvents.add(event);
         }
-filteredEvents.sort((e1, e2) -> {
-    return "asc".equalsIgnoreCase("desc")
-            ? Integer.compare(e1.getScore(), e2.getScore())
-            : Integer.compare(e2.getScore(), e1.getScore());
-});
+filteredEvents.sort((e1, e2) -> Integer.compare(e2.getScore(), e1.getScore()));
         return ResponseEntity.ok(filteredEvents);
 
     } catch (Exception e) {

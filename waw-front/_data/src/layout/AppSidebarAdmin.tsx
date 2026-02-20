@@ -163,7 +163,7 @@ const AppSidebar: React.FC = () => {
           return;
         }
 
-        const { data: admin } = await axios.get(`https://waw.com.tn/api/api/admins/${adminId}`);
+        const { data: admin } = await axios.get(`https://waw.com.tn/api/admins/${adminId}`);
         
         console.log("Admin permissions:", admin);
 

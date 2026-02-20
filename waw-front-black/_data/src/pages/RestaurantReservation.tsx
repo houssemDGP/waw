@@ -111,7 +111,7 @@ const RestaurantReservation: React.FC = () => {
     const fetchRamadanReservations = async () => {
       try {
         const response = await axios.get<RamadanReservation[]>(
-          `https://waw.com.tn/api/api/ramadan-reservations/business/${businessId}`
+          `https://waw.com.tn/api/ramadan-reservations/business/${businessId}`
         );
         console.log(response.data);
         const fcEvents: CalendarEvent[] = response.data.map((reservation) => {
@@ -268,7 +268,7 @@ const RestaurantReservation: React.FC = () => {
     }
 
     try {
-      const url = `https://waw.com.tn/api/api/ramadan-reservations/${reservation.id}/status`;
+      const url = `https://waw.com.tn/api/ramadan-reservations/${reservation.id}/status`;
       const response = await axios.put(url, { status: newStatus });
       console.log(`Statut mis à jour avec succès pour la réservation ID ${reservation.id}:`, response.data);
       closeModal();
@@ -282,7 +282,7 @@ const RestaurantReservation: React.FC = () => {
   const downloadVoucher = async (reservation: RamadanReservation) => {
     try {
       const response = await fetch(
-        `https://waw.com.tn/api/api/ramadan-reservations/${reservation.id}/voucher`,
+        `https://waw.com.tn/api/ramadan-reservations/${reservation.id}/voucher`,
         { method: 'GET' }
       );
 
@@ -326,7 +326,7 @@ const RestaurantReservation: React.FC = () => {
         }))
       };
 
-      const response = await fetch('https://waw.com.tn/api/api/ramadan-reservations/export-pdf', {
+      const response = await fetch('https://waw.com.tn/api/ramadan-reservations/export-pdf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export default function UserProfile() {
   useEffect(() => {
     const userId = localStorage.getItem("userId"); // get userId from localStorage
     if (userId) {
-      axios.get(`https://waw.com.tn/api/api/users/${userId}`)
+      axios.get(`https://waw.com.tn/api/users/${userId}`)
         .then((res) => setUser(res.data))
         .catch((err) => console.error("Erreur lors du fetch utilisateur:", err));
     }

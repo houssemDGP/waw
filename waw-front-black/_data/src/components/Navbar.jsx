@@ -305,7 +305,7 @@ function Navbar() {
     try {
       // 1️⃣ Créer l'utilisateur (sans image)
       const userResponse = await axios.post(
-        "https://waw.com.tn/api/api/users/create",
+        "https://waw.com.tn/api/users/create",
         formDataUser,
         { headers: { "Content-Type": "application/json" } },
       );
@@ -319,7 +319,7 @@ function Navbar() {
         imageData.append("image", imageFileUser);
 
         const imageResponse = await axios.post(
-          `https://waw.com.tn/api/api/users/${createdUser.id}/upload-image`,
+          `https://waw.com.tn/api/users/${createdUser.id}/upload-image`,
           imageData,
           {
             headers: {
@@ -487,7 +487,7 @@ function Navbar() {
       };
 
       const res = await axios.post(
-        "https://waw.com.tn/api/api/business",
+        "https://waw.com.tn/api/business",
         businessData,
       );
       const createdBusiness = res.data;
@@ -497,7 +497,7 @@ function Navbar() {
         formImageData.append("image", imageFile);
 
         await axios.post(
-          `https://waw.com.tn/api/api/business/${createdBusiness.id}/upload-image`,
+          `https://waw.com.tn/api/business/${createdBusiness.id}/upload-image`,
           formImageData,
           {
             headers: {
@@ -619,7 +619,7 @@ function Navbar() {
     try {
       // 🔐 Tenter en tant qu'admin
       const resAdmin = await axios.post(
-        "https://waw.com.tn/api/api/admins/login",
+        "https://waw.com.tn/api/admins/login",
         {
           email,
           password,
@@ -652,7 +652,7 @@ function Navbar() {
     try {
       // 🔐 Tenter en tant que business
       const resBusiness = await axios.post(
-        "https://waw.com.tn/api/api/business/login",
+        "https://waw.com.tn/api/business/login",
         {
           email,
           password,
@@ -672,7 +672,7 @@ function Navbar() {
     try {
       // 🔐 Tenter en tant que user
       const resUser = await axios.post(
-        "https://waw.com.tn/api/api/users/login",
+        "https://waw.com.tn/api/users/login",
         {
           email,
           password,
@@ -702,7 +702,7 @@ function Navbar() {
 
   // 🔄 Charger les catégories dynamiquement depuis l'API
   useEffect(() => {
-    fetch("https://waw.com.tn/api/api/categories")
+    fetch("https://waw.com.tn/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setActivityCategories(data);
@@ -781,7 +781,7 @@ function Navbar() {
     if (!businessId) return;
 
     axios
-      .get(`https://waw.com.tn/api/api/business/${businessId}`)
+      .get(`https://waw.com.tn/api/business/${businessId}`)
       .then((res) => {
         const data = res.data;
 

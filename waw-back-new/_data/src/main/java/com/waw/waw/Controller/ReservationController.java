@@ -124,19 +124,20 @@ boolean isCarteBancaire = "Carte bancaire".equals(reservation.getPaymentMethods(
         }
         break;
         default:
-            finalStatus = null;
-            message = "Erreur inconnue lors de la réservation.";
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur inconnue lors de la réservation.");
     }
 
     reservation.setStatus(finalStatus);
     Reservation savedReservation = repository.save(reservation);
-    
+
     // Store IDs for async processing
     final Long reservationId = savedReservation.getId();
     final Long eventId = event != null ? event.getId() : null;
-    
+
     handleNotifications(savedReservation, event);
-    
+
     CompletableFuture.runAsync(() -> {
         try {
             // Fetch fresh data WITHIN the async thread with new session
@@ -315,19 +316,20 @@ public ResponseEntity<String> create(@RequestBody Reservation reservation) {
             message = "Votre réservation a été confirmée avec succès !";
             break;
         default:
-            finalStatus = null;
-            message = "Erreur inconnue lors de la réservation.";
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur inconnue lors de la réservation.");
     }
 
     reservation.setStatus(finalStatus);
     Reservation savedReservation = repository.save(reservation);
-    
+
     // Store IDs for async processing
     final Long reservationId = savedReservation.getId();
     final Long eventId = event != null ? event.getId() : null;
-    
+
     handleNotifications(savedReservation, event);
-    
+
 CompletableFuture.runAsync(() -> {
     try {
         // Fetch fresh data WITHIN the async thread with new session

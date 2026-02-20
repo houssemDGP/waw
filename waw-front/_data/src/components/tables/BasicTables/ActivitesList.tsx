@@ -39,7 +39,7 @@ export default function GestionActivites() {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${BASE_URL}/api/api/activites`);
+      const res = await axios.get(`${BASE_URL}/api/activites`);
       setActivities(res.data);
     } catch {
       setError("Erreur lors du chargement");
@@ -90,7 +90,7 @@ export default function GestionActivites() {
   const handleDelete = async (id: number) => {
     if (!window.confirm("Supprimer cette activité ?")) return;
     try {
-      await axios.delete(`${BASE_URL}/api/api/activites/${id}`);
+      await axios.delete(`${BASE_URL}/api/activites/${id}`);
       fetchActivities();
     } catch {
       alert("Erreur lors de la suppression");
@@ -107,11 +107,11 @@ export default function GestionActivites() {
 
     try {
       if (editMode && current) {
-        await axios.put(`${BASE_URL}/api/api/activites/${current.id}`, data, {
+        await axios.put(`${BASE_URL}/api/activites/${current.id}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       } else {
-        await axios.post(`${BASE_URL}/api/api/activites`, data, {
+        await axios.post(`${BASE_URL}/api/activites`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       }
@@ -125,7 +125,7 @@ export default function GestionActivites() {
   };
 const handleToggle = async (id: number) => {
   try {
-    await axios.put(`${BASE_URL}/api/api/activites/${id}/status`);
+    await axios.put(`${BASE_URL}/api/activites/${id}/status`);
     fetchActivities();
   } catch {
     alert("Erreur lors du changement de statut");

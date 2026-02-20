@@ -44,7 +44,7 @@ export default function UserMetaCard({ business }) {
       console.log("Saving changes...", formData);
 
       await axios.put(
-        `https://waw.com.tn/api/api/business/${business.id}`,
+        `https://waw.com.tn/api/business/${business.id}`,
         { ...business, ...formData },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -76,7 +76,7 @@ export default function UserMetaCard({ business }) {
 
   try {
     const response = await fetch(
-      `https://waw.com.tn/api/api/business/${business.id}/upload-image`,
+      `https://waw.com.tn/api/business/${business.id}/upload-image`,
       {
         method: "POST",
         body: formData,

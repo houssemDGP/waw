@@ -286,7 +286,7 @@ export default function RestaurantCreatePage() {
       console.log("Creating restaurant with data:", restaurantData);
 
       // 1. Créer le restaurant
-      const createRes = await fetch(`https://waw.com.tn/api/api/restaurants`, {
+      const createRes = await fetch(`https://waw.com.tn/api/restaurants`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(restaurantData)
@@ -313,7 +313,7 @@ export default function RestaurantCreatePage() {
         });
 
         try {
-          const uploadRes = await fetch(`https://waw.com.tn/api/api/restaurants/${restaurantId}/upload-all`, {
+          const uploadRes = await fetch(`https://waw.com.tn/api/restaurants/${restaurantId}/upload-all`, {
             method: "POST",
             body: formDataUpload
           });

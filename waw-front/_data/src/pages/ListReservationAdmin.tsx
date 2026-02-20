@@ -82,7 +82,7 @@ const Calendar: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<ApiEvent[]>(`https://waw.com.tn/api/api/events`)
+      .get<ApiEvent[]>(`https://waw.com.tn/api/events`)
       .then(({ data }) => {
         const fcEvents: CalendarEvent[] = [];
         console.log(data);
@@ -185,7 +185,7 @@ const renderEventContent = (eventInfo: any) => {
     }
 
     try {
-      const url = `https://waw.com.tn/api/api/reservations/${reservation.id}/status?newStatus=${newStatus}`;
+      const url = `https://waw.com.tn/api/reservations/${reservation.id}/status?newStatus=${newStatus}`;
       const response = await axios.put(url);
       console.log(`Statut mis à jour avec succès pour la réservation ID ${reservation.id}:`, response.data);
       closeModal();
@@ -205,7 +205,7 @@ const renderEventContent = (eventInfo: any) => {
 const downloadVoucher = async (reservation: any) => {
   try {
     const response = await fetch(
-      `https://waw.com.tn/api/api/reservations/voucher/${reservation.id}`,
+      `https://waw.com.tn/api/reservations/voucher/${reservation.id}`,
       { method: 'POST' } // ⚠️ car ta méthode est @PostMapping actuellement
     );
 

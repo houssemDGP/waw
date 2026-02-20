@@ -771,7 +771,7 @@ const handleChildChange = (index, field, value) => {
 const handleVote = async (eventId, liked) => {
   try {
     await axios.put(
-      `https://waw.com.tn/api/api/events/${eventId}/vote`,
+      `https://waw.com.tn/api/events/${eventId}/vote`,
       null, // pas de body
       {
         params: { 
@@ -795,7 +795,7 @@ useEffect(() => {
   const userId = localStorage.getItem("userId");
   if (!userId) return;
 
-  fetch(`https://waw.com.tn/api/api/users/${userId}`)
+  fetch(`https://waw.com.tn/api/users/${userId}`)
     .then(res => res.json())
     .then(data => {
       setNom(`${data.nom || ""} ${data.prenom || ""}`.trim());
@@ -866,7 +866,7 @@ useEffect(() => {
     const eventId = data.id; // id de l'événement
 
     try {
-      const res = await fetch(`https://waw.com.tn/api/api/wishlist/add?userId=${userId}&eventId=${eventId}`, {
+      const res = await fetch(`https://waw.com.tn/api/wishlist/add?userId=${userId}&eventId=${eventId}`, {
         method: 'POST' // selon ton API
       });
 
@@ -1063,7 +1063,7 @@ localStorage.setItem("fav-count", (current + 1).toString());
    };
 
 try {
-  const res = await axios.post("https://waw.com.tn/api/api/reservations", reservationData);
+  const res = await axios.post("https://waw.com.tn/api/reservations", reservationData);
   alert(res.data); 
   navigate("/");
 } catch (err) {
@@ -1266,7 +1266,7 @@ const handleChildChange = (index, field, value) => {
 const handleVote = async (eventId, liked) => {
   try {
     await axios.put(
-      `https://waw.com.tn/api/api/events/${eventId}/vote`,
+      `https://waw.com.tn/api/events/${eventId}/vote`,
       null, // pas de body
       {
         params: { 
@@ -1290,7 +1290,7 @@ useEffect(() => {
   const userId = localStorage.getItem("userId");
   if (!userId) return;
 
-  fetch(`https://waw.com.tn/api/api/users/${userId}`)
+  fetch(`https://waw.com.tn/api/users/${userId}`)
     .then(res => res.json())
     .then(data => {
       setNom(`${data.nom || ""} ${data.prenom || ""}`.trim());
@@ -1359,7 +1359,7 @@ useEffect(() => {
     const eventId = data.id; // id de l'événement
 
     try {
-      const res = await fetch(`https://waw.com.tn/api/api/wishlist/add?userId=${userId}&eventId=${eventId}`, {
+      const res = await fetch(`https://waw.com.tn/api/wishlist/add?userId=${userId}&eventId=${eventId}`, {
         method: 'POST' // selon ton API
       });
 
@@ -1543,7 +1543,7 @@ useEffect(() => {
    };
 
 try {
-  const res = await axios.post("https://waw.com.tn/api/api/reservations", reservationData);
+  const res = await axios.post("https://waw.com.tn/api/reservations", reservationData);
   alert(res.data); 
   navigate("/");
 } catch (err) {
@@ -1775,7 +1775,7 @@ date.setDate(date.getDate() + 1);
           if (minPrice) params.minPrice = minPrice;
           if (maxPrice) params.maxPrice = maxPrice;
 
-          response = await axios.get("https://waw.com.tn/api/api/events/search", { params });
+          response = await axios.get("https://waw.com.tn/api/events/search", { params });
           console.log(params);
 
         setEvents(response.data);
@@ -1885,7 +1885,7 @@ const hours = Array.from({ length: 24 }, (_, i) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("https://waw.com.tn/api/api/activites/active")
+    fetch("https://waw.com.tn/api/activites/active")
       .then(res => res.json())
       .then(data => setListActivites(data))
       .catch(err => console.error("❌ Fetch error:", err))

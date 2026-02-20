@@ -49,7 +49,7 @@ const handleSubmitUser = async (e) => {
   try {
     // 1️⃣ Créer l'utilisateur (sans image)
     const userResponse = await axios.post(
-      "https://waw.com.tn/api/api/users/create",
+      "https://waw.com.tn/api/users/create",
       formDataUser,
         { headers: { "Content-Type": "application/json" } }
     );
@@ -63,7 +63,7 @@ const handleSubmitUser = async (e) => {
       imageData.append("image", imageFileUser);
 
       const imageResponse = await axios.post(
-        `https://waw.com.tn/api/api/users/${createdUser.id}/upload-image`,
+        `https://waw.com.tn/api/users/${createdUser.id}/upload-image`,
         imageData,
         {
           headers: {

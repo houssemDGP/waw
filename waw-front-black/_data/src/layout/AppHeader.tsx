@@ -72,7 +72,7 @@ useEffect(() => {
           setError("Business ID manquant");
           return;
         }
-        const res = await axios.get(`https://waw.com.tn/api/api/business/${businessId}`);
+        const res = await axios.get(`https://waw.com.tn/api/business/${businessId}`);
         setData(res.data);
       } else {
         setError("Route inconnue");

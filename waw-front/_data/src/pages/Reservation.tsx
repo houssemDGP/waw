@@ -62,7 +62,7 @@ const Calendar = () => {
     const fetchEvents = async () => {
       try {
         const businessId = localStorage.getItem("businessId");
-        const res = await fetch(`https://waw.com.tn/api/api/events/business/${businessId}`);
+        const res = await fetch(`https://waw.com.tn/api/events/business/${businessId}`);
         const data = await res.json();
 
         const calendarEvents = [];
@@ -214,7 +214,7 @@ const Calendar = () => {
       };
 
       try {
-        await axios.post("https://waw.com.tn/api/api/reservations", reservationData);
+        await axios.post("https://waw.com.tn/api/reservations", reservationData);
         alert("Réservation enregistrée avec succès !");
         closeReservationModal();
         setSelectedSchedule(null);

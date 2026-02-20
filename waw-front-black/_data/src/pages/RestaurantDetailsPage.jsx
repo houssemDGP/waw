@@ -529,7 +529,7 @@ const RestaurantDetailsPage = () => {
   const fetchAvailableSpaces = async (date) => {
     try {
       const response = await axios.get(
-        `https://waw.com.tn/api/api/restaurant-places/restaurant/${id}/active`,
+        `https://waw.com.tn/api/restaurant-places/restaurant/${id}/active`,
         { params: { date } }
       );
 
@@ -545,7 +545,7 @@ const RestaurantDetailsPage = () => {
   const fetchTableReservations = async (date) => {
     try {
       const response = await axios.get(
-        'https://waw.com.tn/api/api/ramadan-reservations/check-date',
+        'https://waw.com.tn/api/ramadan-reservations/check-date',
         {
           params: {
             date: date,
@@ -564,7 +564,7 @@ const RestaurantDetailsPage = () => {
   const fetchAvailableTables = async (spaceId) => {
     try {
       const response = await axios.get(
-        `https://waw.com.tn/api/api/restaurant-tables/place/${spaceId}`,
+        `https://waw.com.tn/api/restaurant-tables/place/${spaceId}`,
         { 
           params: { 
             date: reservationData.date // Pas de paramètre time
@@ -632,7 +632,7 @@ const totalGuests = useMemo(() => {
     const fetchRestaurant = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`https://waw.com.tn/api/api/restaurants/${id}`);
+        const response = await axios.get(`https://waw.com.tn/api/restaurants/${id}`);
         const data = response.data;
         setRestaurant(data);
         
@@ -648,7 +648,7 @@ const totalGuests = useMemo(() => {
         // Vérifier si le restaurant est en favoris
         const userId = localStorage.getItem('userId');
         if (userId) {
-          const favResponse = await axios.get(`https://waw.com.tn/api/api/wishlist/check-restaurant?userId=${userId}&restaurantId=${id}`);
+          const favResponse = await axios.get(`https://waw.com.tn/api/wishlist/check-restaurant?userId=${userId}&restaurantId=${id}`);
           setIsFavorite(favResponse.data.isFavorite || false);
         }
       } catch (err) {
@@ -705,9 +705,9 @@ const totalGuests = useMemo(() => {
 
     try {
       if (isFavorite) {
-        await axios.delete(`https://waw.com.tn/api/api/wishlist/remove-restaurant?userId=${userId}&restaurantId=${id}`);
+        await axios.delete(`https://waw.com.tn/api/wishlist/remove-restaurant?userId=${userId}&restaurantId=${id}`);
       } else {
-        await axios.post(`https://waw.com.tn/api/api/wishlist/add-restaurant?userId=${userId}&restaurantId=${id}`);
+        await axios.post(`https://waw.com.tn/api/wishlist/add-restaurant?userId=${userId}&restaurantId=${id}`);
       }
       setIsFavorite(!isFavorite);
       
@@ -778,7 +778,7 @@ const ramadanReservationRequest = {
 
       // Envoyer la réservation Ramadan
       const response = await axios.post(
-        'https://waw.com.tn/api/api/ramadan-reservations',
+        'https://waw.com.tn/api/ramadan-reservations',
         ramadanReservationRequest,
         {
           headers: {

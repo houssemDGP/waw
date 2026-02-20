@@ -31,7 +31,7 @@ export default function UserInfoCard() {
       data.append("password", passwordData.newPassword);
 
       const response = await axios.put(
-        `https://waw.com.tn/api/api/business/${business.id}`,
+        `https://waw.com.tn/api/business/${business.id}`,
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -47,7 +47,7 @@ export default function UserInfoCard() {
     const businessId = localStorage.getItem("businessId");
     if (businessId) {
       axios
-        .get(`https://waw.com.tn/api/api/business/${businessId}`)
+        .get(`https://waw.com.tn/api/business/${businessId}`)
         .then((res) => {
           setBusiness(res.data);
           setFormData(res.data); // Pré-remplir le formulaire
@@ -75,7 +75,7 @@ export default function UserInfoCard() {
   };
 
   console.log("Payload envoyé :", payload);    
-  axios.put(`https://waw.com.tn/api/api/business/${businessId}`, payload)
+  axios.put(`https://waw.com.tn/api/business/${businessId}`, payload)
       .then(() => {
 
         setBusiness(formData);

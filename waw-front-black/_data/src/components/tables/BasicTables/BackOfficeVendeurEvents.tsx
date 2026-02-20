@@ -304,7 +304,7 @@ export default function BackOfficeVendeurEvents() {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const res = await fetch(`https://waw.com.tn/api/api/events/business/${businessId}`);
+        const res = await fetch(`https://waw.com.tn/api/events/business/${businessId}`);
         if (!res.ok) throw new Error("Erreur de récupération des événements");
         const data = await res.json();
 
@@ -1026,7 +1026,7 @@ const handleSaveSchedules = async () => {
 
     // Send updated event to backend
     const response = await axios.put(
-      `https://waw.com.tn/api/api/schedule-ranges/event/${selectedEvent.id}`, 
+      `https://waw.com.tn/api/schedule-ranges/event/${selectedEvent.id}`, 
       cleanedData
     );
 
@@ -1051,7 +1051,7 @@ const handleSaveSchedules = async () => {
 const handleSaveScheduleExceptions = async () => {
   try {
     await axios.put(
-      `https://waw.com.tn/api/api/schedule-range-exceptions/event/${selectedEvent.id}`,
+      `https://waw.com.tn/api/schedule-range-exceptions/event/${selectedEvent.id}`,
       cleanScheduleRangeExceptions(selectedExceptionSchedules)
     );
 
@@ -1410,7 +1410,7 @@ const addDailyScheduleExcep = (rangeIdx: number) => {
 };
 const handleToggleView = async (id) => {
   try {
-    const res = await axios.put(`https://waw.com.tn/api/api/events/view/${id}`);
+    const res = await axios.put(`https://waw.com.tn/api/events/view/${id}`);
     const updatedEvent = res.data;
 
     // Update the events state without reloading
@@ -1425,7 +1425,7 @@ const handleToggleView = async (id) => {
 };
 const handleToggle = async (id) => {
   try {
-    const res = await axios.put(`https://waw.com.tn/api/api/events/status/${id}`);
+    const res = await axios.put(`https://waw.com.tn/api/events/status/${id}`);
     const updatedEvent = res.data;
 
     // Update the events state without reloading

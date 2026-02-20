@@ -38,7 +38,7 @@ const DailyScheduleCalendar: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<DailyScheduleCount[]>(`https://waw.com.tn/api/api/dailyScheduleCounts/business/${businessId}`)
+      .get<DailyScheduleCount[]>(`https://waw.com.tn/api/dailyScheduleCounts/business/${businessId}`)
       .then(({ data }) => {
         const fcEvents: CalendarEvent[] = data.map((dsc) => ({
           id: `dsc-${dsc.id}`,

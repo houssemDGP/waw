@@ -28,7 +28,7 @@ const handleSave = async () => {
 
   try {
     const response = await fetch(
-      `https://waw.com.tn/api/api/users/${user.id}/upload-image`,
+      `https://waw.com.tn/api/users/${user.id}/upload-image`,
       {
         method: "POST",
         body: formData,

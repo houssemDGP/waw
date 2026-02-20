@@ -205,7 +205,7 @@ function HeroWithSearch() {
   }, []);
 
   useEffect(() => {
-    fetch('https://waw.com.tn/api/api/activites/active')
+    fetch('https://waw.com.tn/api/activites/active')
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((activite) =>
@@ -246,7 +246,7 @@ function HeroWithSearch() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await axios.get("https://waw.com.tn/api/api/banners/active");
+        const response = await axios.get("https://waw.com.tn/api/banners/active");
         if (response.data && response.data.length > 0) {
           const optimizedBanners = response.data.map(banner => ({
             ...banner,

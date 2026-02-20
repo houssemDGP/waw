@@ -21,7 +21,7 @@ export default function UserProfiles() {
         }
 
         const response = await axios.get(
-          `https://waw.com.tn/api/api/business/${businessId}`
+          `https://waw.com.tn/api/business/${businessId}`
         );
         setBusiness(response.data);
       } catch (error) {
