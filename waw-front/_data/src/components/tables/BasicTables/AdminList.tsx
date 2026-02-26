@@ -76,7 +76,7 @@ export default function AdminList() {
   const fetchAdmins = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://waw.com.tn/api/api/admins");
+      const res = await axios.get("https://waw.com.tn/api/admins");
       setAdmins(res.data);
     } catch (error) {
       console.error("Erreur chargement admins", error);
@@ -102,7 +102,7 @@ export default function AdminList() {
       return;
     }
     try {
-      await axios.put(`https://waw.com.tn/api/api/admins/${admin.id}`, {
+      await axios.put(`https://waw.com.tn/api/admins/${admin.id}`, {
         ...admin,
         status: admin.status === "ACTIVE" ? "BLOCKED" : "ACTIVE",
       });
@@ -120,7 +120,7 @@ export default function AdminList() {
     setAdding(true);
     setErrorAdd(null);
     try {
-      await axios.post("https://waw.com.tn/api/api/admins", {
+      await axios.post("https://waw.com.tn/api/admins", {
         name: newAdmin.name,
         email: newAdmin.email,
         password: newAdmin.password,
@@ -143,7 +143,7 @@ export default function AdminList() {
     if (!editAdmin) return;
     
     try {
-      await axios.put(`https://waw.com.tn/api/api/admins/${editAdmin.id}`, editAdmin);
+      await axios.put(`https://waw.com.tn/api/admins/${editAdmin.id}`, editAdmin);
       fetchAdmins();
       setOpenEditModal(false);
       setEditAdmin(null);

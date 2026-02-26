@@ -23,7 +23,7 @@ const [businessCount, setBusinessCount] = useState(0);
 
   useEffect(() => {
     axios
-  .get("https://waw.com.tn/api/api/business")
+  .get("https://waw.com.tn/api/business")
   .then((res) => {
     const data = res.data || [];
     setBusinessCount(data.length);
@@ -32,7 +32,7 @@ const [businessCount, setBusinessCount] = useState(0);
     console.error("Erreur chargement businesses:", err);
   });
     axios
-      .get("https://waw.com.tn/api/api/events")
+      .get("https://waw.com.tn/api/events")
       .then((res) => {
         const data = res.data || [];
         setEvents(data);

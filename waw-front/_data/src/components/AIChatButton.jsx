@@ -88,7 +88,7 @@ const AIChatButton = () => {
 
   const fetchUserInfo = async (userId) => {
     try {
-      const response = await axios.get(`https://waw.com.tn/api/api/users/${userId}`);
+      const response = await axios.get(`https://waw.com.tn/api/users/${userId}`);
       const userData = response.data;
       
       if (userData && userData.nom) {
@@ -105,7 +105,7 @@ const AIChatButton = () => {
 
   const fetchBusinessInfo = async (businessId) => {
     try {
-      const response = await axios.get(`https://waw.com.tn/api/api/business/${businessId}`);
+      const response = await axios.get(`https://waw.com.tn/api/business/${businessId}`);
       const businessData = response.data;
       
       if (businessData && businessData.rs) {
@@ -119,7 +119,7 @@ const AIChatButton = () => {
 
   const fetchAdminInfo = async (adminId) => {
     try {
-      const response = await axios.get(`https://waw.com.tn/api/api/admins/${adminId}`);
+      const response = await axios.get(`https://waw.com.tn/api/admins/${adminId}`);
       const adminData = response.data;
       
       if (adminData && adminData.nom) {
@@ -235,7 +235,7 @@ const AIChatButton = () => {
 
   const fetchActivityTypes = () => {
     setLoadingTypes(true);
-    fetch("https://waw.com.tn/api/api/activites/active")
+    fetch("https://waw.com.tn/api/activites/active")
       .then(res => res.json())
       .then(data => {
         const uniqueTypes = [...new Set(data.map(activity => activity.titre))].filter(Boolean);
@@ -463,7 +463,7 @@ const AIChatButton = () => {
         const formattedDate = searchDate.toISOString().split('T')[0];
         params.append('searchDate', formattedDate);
       }
-      const apiUrl = "https://waw.com.tn/api/api/events/search";
+      const apiUrl = "https://waw.com.tn/api/events/search";
       const response = await axios.get(apiUrl, { params });      
       const activities = response.data.slice(0, 5);
       setFoundActivities(activities);

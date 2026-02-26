@@ -458,7 +458,7 @@ useEffect(() => {
 }, []);
 
   const [Listactivites, setListactivites] = useState([]);
-  const BASE_URL = "https://waw.com.tn/api";
+  const BASE_URL = "https://waw.com.tn";
 
   // fetch activites
   const fetchActivities = async () => {
@@ -478,7 +478,7 @@ useEffect(() => {
 const [allCategories, setAllCategories] = useState([]);
 const [selectedCategories, setSelectedCategories] = useState([]);
 const [selectedSubCategories, setSelectedSubCategories] = useState({});useEffect(() => {
-    fetch("https://waw.com.tn/api/api/categories")
+    fetch("https://waw.com.tn/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setAllCategories(data);
@@ -1060,7 +1060,7 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await fetch("https://waw.com.tn/api/api/events", {
+    const response = await fetch("https://waw.com.tn/api/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -1099,7 +1099,7 @@ const handleUploadImages = async (id, files) => {
   }
 
   try {
-    const response = await fetch(`https://waw.com.tn/api/api/events/${id}/upload-images`, {
+    const response = await fetch(`https://waw.com.tn/api/events/${id}/upload-images`, {
       method: "POST",
       body: formData,
     });
@@ -1126,7 +1126,7 @@ const handleUploadVideos = async (id, files) => {
 
   try {
     const response = await fetch(
-      `https://waw.com.tn/api/api/events/${id}/upload-videos`,
+      `https://waw.com.tn/api/events/${id}/upload-videos`,
       {
         method: "POST",
         body: formData,
@@ -1397,7 +1397,7 @@ const StepHeader = ({ number, title }) => (
 
         try {
           // Appel POST pour ajouter l'activité
-          await axios.post(`https://waw.com.tn/api/api/activites`, data, {
+          await axios.post(`https://waw.com.tn/api/activites`, data, {
             headers: { "Content-Type": "multipart/form-data" },
           });
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://102.211.209.131:3011/'; // adapte à ton backend
+const API_URL = 'http://102.211.209.131:3011'; // adapte à ton backend
 
 // 🟢 Upload un fichier pour un événement
 export const uploadImage = async (eventId, file) => {

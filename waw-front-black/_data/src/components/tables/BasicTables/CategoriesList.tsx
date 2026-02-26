@@ -36,7 +36,7 @@ export default function GestionCategories() {
   const fetchCategories = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://waw.com.tn/api/api/categories");
+      const res = await axios.get("https://waw.com.tn/api/categories");
       setCategories(res.data);
     } catch (err) {
       console.error("Erreur fetch catégories", err);
@@ -62,7 +62,7 @@ export default function GestionCategories() {
   const handleDelete = async (id: number | undefined) => {
     if (!id) return;
     try {
-      await axios.delete(`https://waw.com.tn/api/api/categories/${id}`);
+      await axios.delete(`https://waw.com.tn/api/categories/${id}`);
       fetchCategories();
     } catch (error) {
       console.error("Erreur suppression :", error);
@@ -77,9 +77,9 @@ export default function GestionCategories() {
       };
 
       if (isEditMode && currentCatId) {
-        await axios.put(`https://waw.com.tn/api/api/categories/${currentCatId}`, payload);
+        await axios.put(`https://waw.com.tn/api/categories/${currentCatId}`, payload);
       } else {
-        await axios.post("https://waw.com.tn/api/api/categories", payload);
+        await axios.post("https://waw.com.tn/api/categories", payload);
       }
 
       setOpenModal(false);

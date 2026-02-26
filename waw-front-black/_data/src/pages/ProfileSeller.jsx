@@ -83,7 +83,7 @@ useEffect(() => {
   const eventF = async () => {
     try {
       setLoading(true); // ← début du chargement
-      const response = await axios.get(`https://waw.com.tn/api/api/business/${id}`);
+      const response = await axios.get(`https://waw.com.tn/api/business/${id}`);
       setProfile(response.data);
       console.log(response.data);
 

@@ -150,7 +150,7 @@ export default function ReservationDynamic() {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/api/api/articleindex`)
+      .get(`${BASE_URL}/api/articleindex`)
       .then((res) => setArticles(res.data))
       .catch((err) => console.error(err));
   }, []);

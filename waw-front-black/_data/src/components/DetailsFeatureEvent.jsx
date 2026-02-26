@@ -646,7 +646,7 @@ useEffect(() => {
   const userId = localStorage.getItem("userId");
   if (!userId) return;
 
-  fetch(`https://waw.com.tn/api/api/users/${userId}`)
+  fetch(`https://waw.com.tn/api/users/${userId}`)
     .then(res => res.json())
     .then(data => {
       setNom(`${data.nom || ""} ${data.prenom || ""}`.trim());
@@ -809,7 +809,7 @@ useEffect(() => {
   const eventF = async () => {
     try {
       setLoading(true); // ← début du chargement
-      const response = await axios.get(`https://waw.com.tn/api/api/events/event/${id}`);
+      const response = await axios.get(`https://waw.com.tn/api/events/event/${id}`);
       setEvent(response.data);
       setMainImage(response.data.imageUrls[0]);
       setCalendarEvents(generateCalendarEventsFromEvent(response.data));
@@ -1463,7 +1463,7 @@ extrasReservation: Object.entries(extrasNbr)
    };
 
 try {
-  const res = await axios.post("https://waw.com.tn/api/api/reservations/new", reservationData);
+  const res = await axios.post("https://waw.com.tn/api/reservations/new", reservationData);
   console.log("Réservation créée:", res.data);
 
   // Vérifier si la réservation a été créée avec succès
@@ -1487,7 +1487,7 @@ try {
 
     // 3. Initialiser le paiement
     const paymentResponse = await axios.post(
-      "https://waw.com.tn/api/api/payment/clictopay/initiate", 
+      "https://waw.com.tn/api/payment/clictopay/initiate", 
       paymentRequest
     );
 
@@ -1721,7 +1721,7 @@ onChange={e => {
 
               try {
   const reservationResponse = await axios.post(
-    "https://waw.com.tn/api/api/reservations",
+    "https://waw.com.tn/api/reservations",
     reservationData
   );
                   alert("Réservation enregistrée avec succès.");
@@ -1732,7 +1732,7 @@ onChange={e => {
                 console.log(reservationResponse.data);
 
 
-  const response = await fetch('https://waw.com.tn/api/api/reservations/voucher', {
+  const response = await fetch('https://waw.com.tn/api/reservations/voucher', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -1847,7 +1847,7 @@ onChange={e => {
 
               try {
   const reservationResponse = await axios.post(
-    "https://waw.com.tn/api/api/reservations",
+    "https://waw.com.tn/api/reservations",
     reservationData
   );
                   alert("Réservation enregistrée avec succès.");
@@ -1858,7 +1858,7 @@ onChange={e => {
                 console.log(reservationResponse.data);
 
 
-  const response = await fetch('https://waw.com.tn/api/api/reservations/voucher', {
+  const response = await fetch('https://waw.com.tn/api/reservations/voucher', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

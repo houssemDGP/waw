@@ -22,7 +22,7 @@ const PaymentPage = () => {
   const handlePayment = async () => {
     try {
       const { data } = await axios.post(
-        "https://waw.com.tn/api/api/payments/init",
+        "https://waw.com.tn/api/payments/init",
         {
           amount: amount * 1000,
           description,

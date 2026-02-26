@@ -73,7 +73,7 @@ export default function UserAddressCard({ business }: any) {
       Object.keys(updatedData).forEach((key) => data.append(key, updatedData[key]));
 
       const response = await axios.put(
-        `https://waw.com.tn/api/api/business/${business.id}`,
+        `https://waw.com.tn/api/business/${business.id}`,
         data,
       { headers: { "Content-Type": "application/json" } }
       );

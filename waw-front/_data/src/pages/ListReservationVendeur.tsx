@@ -156,7 +156,7 @@ const Calendar: React.FC = () => {
   }, [events]);
   useEffect(() => {
     axios
-      .get<ApiEvent[]>(`https://waw.com.tn/api/api/events/business/${businessId}`)
+      .get<ApiEvent[]>(`https://waw.com.tn/api/events/business/${businessId}`)
       .then(({ data }) => {
         const fcEvents: CalendarEvent[] = [];
 
@@ -295,7 +295,7 @@ const Calendar: React.FC = () => {
     }
 
     try {
-      const url = `https://waw.com.tn/api/api/reservations/${reservation.id}/status?newStatus=${newStatus}`;
+      const url = `https://waw.com.tn/api/reservations/${reservation.id}/status?newStatus=${newStatus}`;
       const response = await axios.put(url);
       console.log(`Statut mis à jour avec succès pour la réservation ID ${reservation.id}:`, response.data);
       closeModal();
@@ -315,7 +315,7 @@ const Calendar: React.FC = () => {
   const downloadVoucher = async (reservation: any) => {
     try {
       const response = await fetch(
-        `https://waw.com.tn/api/api/reservations/voucher/${reservation.id}`,
+        `https://waw.com.tn/api/reservations/voucher/${reservation.id}`,
         { method: 'POST' }
       );
 
@@ -373,7 +373,7 @@ const exportDateReservationsPDF = async (dateReservations: DateReservations) => 
       }))
     };
 
-    const response = await fetch('https://waw.com.tn/api/api/reservations/export-pdf-detailed', {
+    const response = await fetch('https://waw.com.tn/api/reservations/export-pdf-detailed', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

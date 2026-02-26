@@ -218,7 +218,6 @@ export default function App() {
            <Route path="/politique-de-confidentialite" element={<PDC />} />
 
 
-           /politique-de-confidentialite
            <Route path="/rewardsPage" element={<RewardsPage  />} />
            <Route path="/reviewsPage" element={<ReviewsPage  />} />
            <Route path="/planningPage" element={<PlanningPage  />} />

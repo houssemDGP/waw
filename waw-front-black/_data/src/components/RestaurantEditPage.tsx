@@ -157,7 +157,7 @@ export default function RestaurantEditPage() {
   // Fetch restaurant data
   useEffect(() => {
     setLoading(true);
-    fetch(`https://waw.com.tn/api/api/restaurants/${id}`)
+    fetch(`https://waw.com.tn/api/restaurants/${id}`)
       .then(res => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -306,7 +306,7 @@ export default function RestaurantEditPage() {
     }
 
     try {
-      const response = await fetch(`https://waw.com.tn/api/api/restaurants/${id}/upload-images`, {
+      const response = await fetch(`https://waw.com.tn/api/restaurants/${id}/upload-images`, {
         method: "POST",
         body: formData,
       });
@@ -374,7 +374,7 @@ export default function RestaurantEditPage() {
       console.log("Updating restaurant with data:", updateData);
 
       // 5. Mettre à jour le restaurant
-      const res = await fetch(`https://waw.com.tn/api/api/restaurants/${id}`, {
+      const res = await fetch(`https://waw.com.tn/api/restaurants/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updateData)

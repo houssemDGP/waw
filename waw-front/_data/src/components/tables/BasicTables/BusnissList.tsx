@@ -35,7 +35,7 @@ export default function BusinessList() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("https://waw.com.tn/api/api/business");
+      const res = await axios.get("https://waw.com.tn/api/business");
       setUsers(res.data.reverse());
     } catch (err) {
       console.error("Erreur chargement users", err);
@@ -50,7 +50,7 @@ export default function BusinessList() {
 
   const toggleStatus = async (user: BusinessUser) => {
     try {
-      await axios.put(`https://waw.com.tn/api/api/business/${user.id}/active`, {
+      await axios.put(`https://waw.com.tn/api/business/${user.id}/active`, {
         active: !user.active,
       });
       fetchUsers();

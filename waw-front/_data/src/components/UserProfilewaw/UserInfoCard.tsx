@@ -43,7 +43,7 @@ export default function UserInfoCard({ user, onUserUpdate, onUserDelete }: any) 
       });
 
       const response = await axios.put(
-        `https://waw.com.tn/api/api/users/update/${user.id}`,
+        `https://waw.com.tn/api/users/update/${user.id}`,
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -76,7 +76,7 @@ export default function UserInfoCard({ user, onUserUpdate, onUserDelete }: any) 
       data.append("password", passwordData.newPassword);
 
       const response = await axios.put(
-        `https://waw.com.tn/api/api/users/update/${user.id}`,
+        `https://waw.com.tn/api/users/update/${user.id}`,
         data,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -97,7 +97,7 @@ export default function UserInfoCard({ user, onUserUpdate, onUserDelete }: any) 
     setLoading(true);
     try {
       const response = await axios.patch(
-        `https://waw.com.tn/api/api/users/${user.id}/toggle-active`
+        `https://waw.com.tn/api/users/${user.id}/toggle-active`
       );
 
       console.log("Statut utilisateur modifié :", response.data);
@@ -115,7 +115,7 @@ export default function UserInfoCard({ user, onUserUpdate, onUserDelete }: any) 
   const handleDeleteUser = async () => {
     setLoading(true);
     try {
-      await axios.delete(`https://waw.com.tn/api/api/users/${user.id}`);
+      await axios.delete(`https://waw.com.tn/api/users/${user.id}`);
       
       console.log("Utilisateur supprimé");
       if (onUserDelete) onUserDelete(user.id);

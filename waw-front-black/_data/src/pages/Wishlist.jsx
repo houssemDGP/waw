@@ -70,7 +70,7 @@ localStorage.setItem("fav-count", 0);
     const eventId = event.id; // id de l'événement courant
 
     try {
-      const res = await fetch(`https://waw.com.tn/api/api/wishlist/remove?userId=${userId}&eventId=${eventId}`, {
+      const res = await fetch(`https://waw.com.tn/api/wishlist/remove?userId=${userId}&eventId=${eventId}`, {
         method: "DELETE" // ou "GET" si ton backend attend GET
       });
 
@@ -121,7 +121,7 @@ export default function WishlistPage() {
 const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    fetch(`https://waw.com.tn/api/api/wishlist/user/${userId}`)
+    fetch(`https://waw.com.tn/api/wishlist/user/${userId}`)
       .then(res => res.json())
       .then(data => setWishlist(data))
       .catch(err => console.error(err));

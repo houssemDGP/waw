@@ -106,7 +106,7 @@ const [newVideoFiles, setNewVideoFiles] = useState([]);
   // --- Fetch event ---
   useEffect(() => {
     setLoading(true);
-    fetch(`https://waw.com.tn/api/api/events/${id}`)
+    fetch(`https://waw.com.tn/api/events/${id}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -141,11 +141,11 @@ const [newVideoFiles, setNewVideoFiles] = useState([]);
 
   // --- Fetch activities & categories ---
   useEffect(() => {
-    fetch("https://waw.com.tn/api/api/activites")
+    fetch("https://waw.com.tn/api/activites")
       .then(res => res.json())
       .then(setListactivites)
       .catch(console.error);
-    fetch("https://waw.com.tn/api/api/categories")
+    fetch("https://waw.com.tn/api/categories")
       .then(res => res.json())
       .then(setAllCategories)
       .catch(console.error);
@@ -206,7 +206,7 @@ const handleUploadImages = async (id, files) => {
   }
 
   try {
-    const response = await fetch(`https://waw.com.tn/api/api/events/${id}/upload-images`, {
+    const response = await fetch(`https://waw.com.tn/api/events/${id}/upload-images`, {
       method: "POST",
       body: formData,
     });
@@ -235,7 +235,7 @@ const handleUploadVideos = async (id, files) => {
 
   try {
     const response = await fetch(
-      `https://waw.com.tn/api/api/events/${id}/upload-videos`,
+      `https://waw.com.tn/api/events/${id}/upload-videos`,
       {
         method: "POST",
         body: formData,
@@ -310,7 +310,7 @@ const handleSave = async () => {
     console.log("Final update data:", finalUpdate);
 
     // 3. Mettre à jour l'événement
-    const res = await fetch(`https://waw.com.tn/api/api/events/${event.id}`, {
+    const res = await fetch(`https://waw.com.tn/api/events/${event.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(finalUpdate)

@@ -82,7 +82,7 @@ const Calendar: React.FC = () => {
   const userId = localStorage.getItem("userId");
 
   useEffect(() => {
-    axios.get<any>(`https://waw.com.tn/api/api/users/${userId}`)
+    axios.get<any>(`https://waw.com.tn/api/users/${userId}`)
       .then(({ data }) => {
         const fcEvents: CalendarEvent[] = [];
 
@@ -136,7 +136,7 @@ const Calendar: React.FC = () => {
     openModal();
   };
 const downloadVoucher = async (reservation) => {
-const response = await fetch(`https://waw.com.tn/api/api/reservations/voucher/${reservation.id}`, {
+const response = await fetch(`https://waw.com.tn/api/reservations/voucher/${reservation.id}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',

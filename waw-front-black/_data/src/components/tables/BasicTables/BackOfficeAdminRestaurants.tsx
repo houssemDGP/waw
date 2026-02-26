@@ -156,7 +156,7 @@ export default function BackOfficeVendeurRestaurants() {
   useEffect(() => {
     async function fetchRestaurants() {
       try {
-        const res = await fetch(`https://waw.com.tn/api/api/restaurants`);
+        const res = await fetch(`https://waw.com.tn/api/restaurants`);
         if (!res.ok) throw new Error("Erreur de récupération des restaurants");
         const data = await res.json();
         setRestaurants(data);
@@ -176,7 +176,7 @@ export default function BackOfficeVendeurRestaurants() {
 
   const handleToggleActive = async (id) => {
     try {
-      const res = await axios.put(`https://waw.com.tn/api/api/restaurants/status/${id}`);
+      const res = await axios.put(`https://waw.com.tn/api/restaurants/status/${id}`);
       const updatedRestaurant = res.data;
 
       setRestaurants((prevRestaurants) =>
@@ -192,7 +192,7 @@ export default function BackOfficeVendeurRestaurants() {
   const handleDelete = async (id) => {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer ce restaurant ?")) {
       try {
-        await axios.delete(`https://waw.com.tn/api/api/restaurants/${id}`);
+        await axios.delete(`https://waw.com.tn/api/restaurants/${id}`);
         setRestaurants(restaurants.filter(restaurant => restaurant.id !== id));
       } catch (err) {
         console.error('Error deleting restaurant', err);

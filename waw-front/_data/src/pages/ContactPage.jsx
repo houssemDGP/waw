@@ -91,7 +91,7 @@ const ContactPage = () => {
     try {
       setSubmitStatus('loading');
       
-      const response = await fetch('https://waw.com.tn/api/api/contact/send', {
+      const response = await fetch('https://waw.com.tn/api/contact/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

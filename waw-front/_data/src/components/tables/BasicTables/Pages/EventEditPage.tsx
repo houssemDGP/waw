@@ -123,7 +123,7 @@ const [selectedPayments, setSelectedPayments] = useState(event.paymentMethods);
   const [Listactivites, setListactivites] = useState([]);
 useEffect(() => {
   setLoading(true);
-  fetch("https://waw.com.tn/api/api/activites")
+  fetch("https://waw.com.tn/api/activites")
     .then((res) => res.json())
     .then((data) => {
       setListactivites(data);
@@ -142,7 +142,7 @@ const [selectedCategories, setSelectedCategories] = useState([]);
 const [selectedSubCategories, setSelectedSubCategories] = useState({});
   useEffect(() => {
     setLoading(true); // start loading
-    fetch("https://waw.com.tn/api/api/categories")
+    fetch("https://waw.com.tn/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setAllCategories(data);
@@ -215,7 +215,7 @@ const handleSave = async () => {
   }
 
   try {
-    const response = await fetch(`https://waw.com.tn/api/api/events/${event.id}`, {
+    const response = await fetch(`https://waw.com.tn/api/events/${event.id}`, {
       method: "PUT", // ou PATCH si backend supporte
       headers: {
         "Content-Type": "application/json",

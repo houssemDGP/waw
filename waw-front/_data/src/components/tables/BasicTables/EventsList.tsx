@@ -314,7 +314,7 @@ const [selectedPayments, setSelectedPayments] = useState(event.paymentMethods);
   const [Listactivites, setListactivites] = useState([]);
 useEffect(() => {
   setLoading(true);
-  fetch("https://waw.com.tn/api/api/activites")
+  fetch("https://waw.com.tn/api/activites")
     .then((res) => res.json())
     .then((data) => {
       setListactivites(data);
@@ -333,7 +333,7 @@ const [selectedCategories, setSelectedCategories] = useState([]);
 const [selectedSubCategories, setSelectedSubCategories] = useState({});
   useEffect(() => {
     setLoading(true); // start loading
-    fetch("https://waw.com.tn/api/api/categories")
+    fetch("https://waw.com.tn/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setAllCategories(data);
@@ -406,7 +406,7 @@ const handleSave = async () => {
   }
 
   try {
-    const response = await fetch(`https://waw.com.tn/api/api/events/${event.id}`, {
+    const response = await fetch(`https://waw.com.tn/api/events/${event.id}`, {
       method: "PUT", // ou PATCH si backend supporte
       headers: {
         "Content-Type": "application/json",
@@ -1186,7 +1186,7 @@ export default function BackOfficeVendeurEvents() {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const res = await fetch(`https://waw.com.tn/api/api/events`);
+        const res = await fetch(`https://waw.com.tn/api/events`);
         if (!res.ok) throw new Error("Erreur de récupération des événements");
         const data = await res.json();
 
@@ -1858,7 +1858,7 @@ const cleanScheduleRanges = (ranges) => {
     const handleSaveSchedules = async () => {
       try {
     // Send updated event to backend
-    await axios.put(`https://waw.com.tn/api/api/schedule-ranges/event/${selectedEvent.id}`, selectedNormalSchedules);
+    await axios.put(`https://waw.com.tn/api/schedule-ranges/event/${selectedEvent.id}`, selectedNormalSchedules);
 
     // Update local state
     setEvents((prev) =>
@@ -1875,7 +1875,7 @@ const cleanScheduleRanges = (ranges) => {
 const handleSaveScheduleExceptions = async () => {
   try {
     await axios.put(
-      `https://waw.com.tn/api/api/schedule-range-exceptions/event/${selectedEvent.id}`,
+      `https://waw.com.tn/api/schedule-range-exceptions/event/${selectedEvent.id}`,
       cleanScheduleRangeExceptions(selectedExceptionSchedules)
     );
 
@@ -2160,7 +2160,7 @@ const rsList = Array.from(
 
 const handleToggle = async (id) => {
   try {
-    const res = await axios.put(`https://waw.com.tn/api/api/events/status/${id}`);
+    const res = await axios.put(`https://waw.com.tn/api/events/status/${id}`);
     const updatedEvent = res.data;
 
     // Update the events state without reloading

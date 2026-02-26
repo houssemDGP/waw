@@ -39,7 +39,7 @@ const BannerPageCustom: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`${BASE_URL}/api/api/banners`);
+      const res = await axios.get(`${BASE_URL}/api/banners`);
       setBanners(res.data);
     } catch (err) {
       setError("Erreur lors du chargement");
@@ -84,7 +84,7 @@ const BannerPageCustom: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (!confirm("Supprimer cette bannière ?")) return;
     try {
-      await axios.delete(`${BASE_URL}/api/api/banners/${id}`);
+      await axios.delete(`${BASE_URL}/api/banners/${id}`);
       fetchBanners();
     } catch {
       alert("Erreur lors de la suppression");
@@ -104,11 +104,11 @@ const BannerPageCustom: React.FC = () => {
 
     try {
       if (editMode && current) {
-        await axios.put(`${BASE_URL}/api/api/banners/${current.id}`, data, {
+        await axios.put(`${BASE_URL}/api/banners/${current.id}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       } else {
-        await axios.post(`${BASE_URL}/api/api/banners`, data, {
+        await axios.post(`${BASE_URL}/api/banners`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       }

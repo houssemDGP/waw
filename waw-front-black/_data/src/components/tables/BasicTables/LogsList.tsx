@@ -16,7 +16,7 @@ export default function LogsList() {
 
   const fetchLogs = async () => {
     try {
-      const res = await axios.get("https://waw.com.tn/api/api/logs");
+      const res = await axios.get("https://waw.com.tn/api/logs");
       setLogs(res.data);
     } catch (error) {
       console.error("Erreur de chargement des logs", error);

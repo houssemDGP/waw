@@ -80,21 +80,21 @@ export default function NotificationDropdown() {
 
     const fetchNotifications = async () => {
       try {
-        const res = await fetch(`https://waw.com.tn/api/api/notifications/business/${businessId}`);
+        const res = await fetch(`https://waw.com.tn/api/notifications/business/${businessId}`);
         const data = await res.json();
         setNotifications(data);
 
         // Fetch unique users
         const userIds = [...new Set(data.map(n => n.user))];
         const userData = await Promise.all(
-          userIds.map(id => fetch(`https://waw.com.tn/api/api/users/${id}`).then(r => r.json()))
+          userIds.map(id => fetch(`https://waw.com.tn/api/users/${id}`).then(r => r.json()))
         );
         setUsers(Object.fromEntries(userData.map(u => [u.id, u])));
 
         // Fetch unique reservations
         const reservationIds = [...new Set(data.map(n => n.reservation))];
         const reservationData = await Promise.all(
-          reservationIds.map(id => fetch(`https://waw.com.tn/api/api/reservations/${id}`).then(r => r.json()))
+          reservationIds.map(id => fetch(`https://waw.com.tn/api/reservations/${id}`).then(r => r.json()))
         );
         setReservations(Object.fromEntries(reservationData.map(r => [r.id, r])));
       } catch (error) {
@@ -111,7 +111,7 @@ export default function NotificationDropdown() {
 
   const markNotificationAsViewed = async (id) => {
     try {
-      const res = await fetch(`https://waw.com.tn/api/api/notifications/${id}/view`, {
+      const res = await fetch(`https://waw.com.tn/api/notifications/${id}/view`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

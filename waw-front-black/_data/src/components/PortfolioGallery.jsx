@@ -104,7 +104,7 @@ const PortfolioGallery = () => {
 
   const [villes, setVilles] = useState([]);
 useEffect(() => {
-  fetch('https://waw.com.tn/api/api/villes')
+  fetch('https://waw.com.tn/api/villes')
     .then((res) => res.json())
     .then((data) => {
         setVilles(data);

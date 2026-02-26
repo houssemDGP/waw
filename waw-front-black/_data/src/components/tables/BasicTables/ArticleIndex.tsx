@@ -12,7 +12,7 @@ interface Article {
   imageUrls: string[];
 }
 
-const BASE_URL = "https://waw.com.tn/api";
+const BASE_URL = "https://waw.com.tn";
 
 const ArticleIndex: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);

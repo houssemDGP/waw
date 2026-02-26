@@ -22,7 +22,7 @@ const [dailyRevenue, setDailyRevenue] = useState<number[]>([]);
 
   useEffect(() => {
     axios
-      .get(`https://waw.com.tn/api/api/events/business/${businessId}`)
+      .get(`https://waw.com.tn/api/events/business/${businessId}`)
       .then((res) => {
         const data = res.data || [];
         setEvents(data);

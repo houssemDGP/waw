@@ -25,7 +25,7 @@ export default function SignInForm({ isAdmin = false }: { isAdmin?: boolean }) {
 
   try {
     // 🔐 Tenter en tant qu'admin
-    const resAdmin = await axios.post("https://waw.com.tn/api/api/admins/login", {
+    const resAdmin = await axios.post("https://waw.com.tn/api/admins/login", {
       email,
       password,
     });
@@ -48,7 +48,7 @@ export default function SignInForm({ isAdmin = false }: { isAdmin?: boolean }) {
   }
 
   try {
-    const resBusiness = await axios.post("https://waw.com.tn/api/api/business/login", {
+    const resBusiness = await axios.post("https://waw.com.tn/api/business/login", {
       email,
       password,
     });

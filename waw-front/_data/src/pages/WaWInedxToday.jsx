@@ -622,7 +622,7 @@ const RestaurantHero = () => {
 
   const [villes, setVilles] = useState([]);
 useEffect(() => {
-  fetch('https://waw.com.tn/api/api/villes')
+  fetch('https://waw.com.tn/api/villes')
     .then((res) => res.json())
     .then((data) => {
         setVilles(data);
@@ -786,7 +786,7 @@ useEffect(() => {
   const [activites, setActivitess] = useState([]);
 
 useEffect(() => {
-  fetch('https://waw.com.tn/api/api/activites/active')
+  fetch('https://waw.com.tn/api/activites/active')
     .then((res) => res.json())
     .then((data) => {
       const filtered = data.filter((activite) => 

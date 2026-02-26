@@ -10,7 +10,7 @@ interface Ville {
   imageUrl?: string;
 }
 
-const BASE_URL = "https://waw.com.tn/api";
+const BASE_URL = "https://waw.com.tn";
 
 const VillePageCustom: React.FC = () => {
   const [villes, setVilles] = useState<Ville[]>([]);

@@ -165,8 +165,9 @@ public ResponseEntity<String> create(@RequestBody Reservation reservation) {
             message = "Votre réservation a été confirmée avec succès !";
             break;
         default:
-            finalStatus = null;
-            message = "Erreur inconnue lors de la réservation.";
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur inconnue lors de la réservation.");
     }
 
     reservation.setStatus(finalStatus);

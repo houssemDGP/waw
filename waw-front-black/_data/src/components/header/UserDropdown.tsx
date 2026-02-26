@@ -30,7 +30,7 @@ export default function UserDropdown() {
             setError("Admin ID manquant");
             return;
           }
-          const res = await axios.get(`https://waw.com.tn/api/api/admins/${adminId}`);
+          const res = await axios.get(`https://waw.com.tn/api/admins/${adminId}`);
           setData(res.data);
         } else if (path.startsWith("/vendeur")) {
           const businessId = localStorage.getItem("businessId");
@@ -38,7 +38,7 @@ export default function UserDropdown() {
             setError("Business ID manquant");
             return;
           }
-          const res = await axios.get(`https://waw.com.tn/api/api/business/${businessId}`);
+          const res = await axios.get(`https://waw.com.tn/api/business/${businessId}`);
           setData(res.data);
 
         } else {
@@ -79,10 +79,10 @@ useEffect(() => {
       const adminId = localStorage.getItem("adminId");
 
       if (businessId) {
-        const res = await axios.get(`https://waw.com.tn/api/api/business/${businessId}`);
+        const res = await axios.get(`https://waw.com.tn/api/business/${businessId}`);
         setData(res.data);
       } else if (adminId) {
-        const res = await axios.get(`https://waw.com.tn/api/api/admins/${adminId}`);
+        const res = await axios.get(`https://waw.com.tn/api/admins/${adminId}`);
         setData(res.data);
       } else {
         setError("Aucun identifiant trouvé");

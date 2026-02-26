@@ -32,7 +32,7 @@ const handleSendCode = async (e) => {
   try {
     try {
       // 1️⃣ Business
-      const res = await axios.post("https://waw.com.tn/api/api/business/auth/forgot-password", {
+      const res = await axios.post("https://waw.com.tn/api/business/auth/forgot-password", {
         email,
       });
       setMessage(res.data);
@@ -40,14 +40,14 @@ const handleSendCode = async (e) => {
     } catch {
       try {
         // 2️⃣ Users
-        const res = await axios.post("https://waw.com.tn/api/api/users/auth/forgot-password", {
+        const res = await axios.post("https://waw.com.tn/api/users/auth/forgot-password", {
           email,
         });
         setMessage(res.data);
         setStep(2);
       } catch {
         // 3️⃣ Admins
-        const res = await axios.post("https://waw.com.tn/api/api/admins/auth/forgot-password", {
+        const res = await axios.post("https://waw.com.tn/api/admins/auth/forgot-password", {
           email,
         });
         setMessage(res.data);
@@ -71,7 +71,7 @@ const handleResetPassword = async (e) => {
   try {
     try {
       // 1️⃣ Business
-      await axios.post("https://waw.com.tn/api/api/business/auth/reset-password", {
+      await axios.post("https://waw.com.tn/api/business/auth/reset-password", {
         email,
         resetCode,
         newPassword,
@@ -81,7 +81,7 @@ const handleResetPassword = async (e) => {
     } catch {
       try {
         // 2️⃣ Users
-        await axios.post("https://waw.com.tn/api/api/users/auth/reset-password", {
+        await axios.post("https://waw.com.tn/api/users/auth/reset-password", {
           email,
           resetCode,
           newPassword,
@@ -90,7 +90,7 @@ const handleResetPassword = async (e) => {
         setStep(1);
       } catch {
         // 3️⃣ Admins
-        await axios.post("https://waw.com.tn/api/api/admins/auth/reset-password", {
+        await axios.post("https://waw.com.tn/api/admins/auth/reset-password", {
           email,
           resetCode,
           newPassword,
